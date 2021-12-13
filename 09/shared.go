@@ -1,31 +1,21 @@
 package main
 
-import (
-	"bufio"
-	"os"
-)
 
-func ReadInput(path string) ([]string, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-	return lines, scanner.Err()
-}
-
-func Sum(input []int) int {
+func sum(input []int) int {
 	sum := 0
 	for i := range input {
 		sum += input[i]
 	}
-	return sum}
+	return sum
+}
+
+func Product(input []int) int {
+	product := 1
+	for i := range input {
+		product *= input[i]
+	}
+	return product
+}
 
 func Abs(x int) int {
 	if x < 0 {
@@ -46,6 +36,20 @@ func MinMax(array []int) (int, int) {
 		}
 	}
 	return min, max
+}
+
+func Min(a int, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func Max(a int, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func intersection(s1 []string, s2 []string) []string {
@@ -83,26 +87,4 @@ func union(s1 []string, s2 []string) []string {
 		ret = append(ret, k)
 	}
 	return ret
-}
-
-func Min(a int, b int) int {
-	if a < b {
-			return a
-	}
-	return b
-}
-
-func Max(a int, b int) int {
-	if a > b {
-			return a
-	}
-	return b
-}
-
-func Product(input []int) int {
-	product := 1
-	for i := range input {
-			product *= input[i]
-	}
-	return product
 }
